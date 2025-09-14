@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Environments
+.env
+.venv/
+venv/
+env/
+
+# Docker
+*.pid
+docker-compose.override.yml
+*.log
+*.tmp
+*.swp
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.iml
+
+# MacOS / Linux
+.DS_Store
+*.swp
+
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.mypy_cache/
+
