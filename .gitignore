@@ -8,7 +8,6 @@ build/
 *.log
 
 # Environments
-.env
 .venv/
 venv/
 env/
