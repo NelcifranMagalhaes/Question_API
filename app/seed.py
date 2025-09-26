@@ -2,12 +2,14 @@ import sys
 import os
 import asyncio
 
+
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.database import init_db
 from app.models.question import Question
 from app.models.option import Option
-
+from app.models.user import User
 
 async def seed():
     await init_db()
@@ -15,8 +17,9 @@ async def seed():
     # limpa coleções para não duplicar
     await Question.delete_all()
     await Option.delete_all()
+    await User.delete_all()
 
-    # perguntas
+    # questions
     questions_data = [
         {"label": "Escolha o seu emoji de hoje!", "ordering": 1},
         {"label": "Como você se sente hoje?", "ordering": 2},
@@ -34,7 +37,7 @@ async def seed():
         await q_doc.insert()
         inserted_questions.append(q_doc)
 
-    # opções
+    # options
     options_map = {
         1: ["Triste", "Alegre", "Cansado", "Ansioso", "Medo", "Raiva"],
         2: ["Motivado", "Cansado", "Preocupado", "Estressado", "Animado", "Satisfeito"],
@@ -45,6 +48,12 @@ async def seed():
         7: ["Nunca", "Raramente", "Às vezes", "Frequentemente", "Sempre"],
         8: ["1", "2", "3", "4", "5"],
     }
+
+    # users
+    user_one = User(name="Worker1", email="worker1@example.com")
+    user_two = User(name="Worker2", email="worker2@example.com")
+    await user_one.insert()
+    await user_two.insert()
 
     for idx, q_doc in enumerate(inserted_questions, start=1):
         for label in options_map[idx]:
