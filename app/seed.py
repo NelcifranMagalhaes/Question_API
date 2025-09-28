@@ -2,14 +2,14 @@ import sys
 import os
 import asyncio
 
-
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.database import init_db
 from app.models.question import Question
 from app.models.option import Option
 from app.models.user import User
+from app.models.answer import Answer
+
 
 async def seed():
     await init_db()
@@ -18,6 +18,7 @@ async def seed():
     await Question.delete_all()
     await Option.delete_all()
     await User.delete_all()
+    await Answer.delete_all()
 
     # questions
     questions_data = [
